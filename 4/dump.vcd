@@ -1,0 +1,36 @@
+$date
+	Sat Aug  6 11:07:31 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module fulladd_tb $end
+$var wire 3 ! sum [2:0] $end
+$var wire 1 " c_out $end
+$var reg 3 # a [2:0] $end
+$var reg 3 $ b [2:0] $end
+$var reg 1 % c_in $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0%
+b0 $
+b1 #
+0"
+b1 !
+$end
+#10
+1"
+b10 !
+b111 $
+b11 #
+#20
+0"
+b110 !
+b1 $
+b101 #
+#30
