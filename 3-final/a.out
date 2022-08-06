@@ -1,0 +1,150 @@
+#! /usr/share/iverilog-0.10.0/bin/vvp
+:ivl_version "0.10.0 (devel)" "(v0_9_6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_0xa78630 .scope module, "bitwise_tb" "bitwise_tb" 2 7;
+ .timescale -9 -9;
+v0xa8f2e0_0 .var "t_x", 1 0;
+v0xa8f3f0_0 .var "t_y", 1 0;
+v0xa8f4c0_0 .net "t_z", 0 0, v0xa8ed30_0;  1 drivers
+S_0xa767b0 .scope module, "bw1" "bitwise" 2 27, 3 4 0, S_0xa78630;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 2 "x"
+    .port_info 1 /INPUT 2 "y"
+    .port_info 2 /OUTPUT 1 "z"
+v0xa769d0_0 .net "x", 1 0, v0xa8f2e0_0;  1 drivers
+v0xa8ec50_0 .net "y", 1 0, v0xa8f3f0_0;  1 drivers
+v0xa8ed30_0 .var "z", 0 0;
+E_0xa78b60 .event edge, v0xa8ec50_0, v0xa769d0_0;
+S_0xa8ee80 .scope task, "compare" "compare" 2 15, 2 15 0, S_0xa78630;
+ .timescale -9 -9;
+v0xa8f050_0 .var "t_x", 1 0;
+v0xa8f130_0 .var "t_y", 1 0;
+v0xa8f210_0 .var "t_z", 0 0;
+TD_bitwise_tb.compare ;
+    %vpi_call/w 2 17 "$display", "x=%d, y=%d", v0xa8f050_0, v0xa8f130_0 {0 0};
+    %load/v 8, v0xa8f210_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %vpi_call/w 2 20 "$display", "Both numbers are equal" {0 0};
+    %jmp T_0.1;
+T_0.0 ;
+    %vpi_call/w 2 22 "$display", "Numbers are not equal" {0 0};
+T_0.1 ;
+    %end;
+    .scope S_0xa767b0;
+T_1 ;
+    %wait E_0xa78b60;
+    %load/v 8, v0xa769d0_0, 1; Only need 1 of 2 bits
+; Save base=8 wid=1 in lookaside.
+    %load/v 9, v0xa8ec50_0, 1; Only need 1 of 2 bits
+; Save base=9 wid=1 in lookaside.
+    %cmp/u 8, 9, 1;
+    %mov 8, 4, 1;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.0, 4;
+    %load/x1p 9, v0xa769d0_0, 1;
+    %jmp T_1.1;
+T_1.0 ;
+    %mov 9, 2, 1;
+T_1.1 ;
+; Save base=9 wid=1 in lookaside.
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.2, 4;
+    %load/x1p 10, v0xa8ec50_0, 1;
+    %jmp T_1.3;
+T_1.2 ;
+    %mov 10, 2, 1;
+T_1.3 ;
+; Save base=10 wid=1 in lookaside.
+    %cmp/u 9, 10, 1;
+    %mov 9, 4, 1;
+    %and 8, 9, 1;
+    %jmp/0xz  T_1.4, 8;
+    %cassign/v v0xa8ed30_0, 1, 1;
+    %jmp T_1.5;
+T_1.4 ;
+    %cassign/v v0xa8ed30_0, 0, 1;
+T_1.5 ;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0xa78630;
+T_2 ;
+    %vpi_call/w 2 35 "$dumpfile", "bwt.vcd" {0 0};
+    %vpi_call/w 2 36 "$dumpvars", 2'sb01, S_0xa78630 {0 0};
+    %set/v v0xa8f2e0_0, 1, 2;
+    %movi 8, 2, 2;
+    %set/v v0xa8f3f0_0, 8, 2;
+    %delay 10, 0;
+    %load/v 8, v0xa8f2e0_0, 2;
+    %set/v v0xa8f050_0, 8, 2;
+    %load/v 8, v0xa8f3f0_0, 2;
+    %set/v v0xa8f130_0, 8, 2;
+    %load/v 8, v0xa8f4c0_0, 1;
+    %set/v v0xa8f210_0, 8, 1;
+    %fork TD_bitwise_tb.compare, S_0xa8ee80;
+    %join;
+    %set/v v0xa8f2e0_0, 1, 2;
+    %movi 8, 1, 2;
+    %set/v v0xa8f3f0_0, 8, 2;
+    %delay 10, 0;
+    %load/v 8, v0xa8f2e0_0, 2;
+    %set/v v0xa8f050_0, 8, 2;
+    %load/v 8, v0xa8f3f0_0, 2;
+    %set/v v0xa8f130_0, 8, 2;
+    %load/v 8, v0xa8f4c0_0, 1;
+    %set/v v0xa8f210_0, 8, 1;
+    %fork TD_bitwise_tb.compare, S_0xa8ee80;
+    %join;
+    %movi 8, 2, 2;
+    %set/v v0xa8f2e0_0, 8, 2;
+    %movi 10, 1, 2;
+    %set/v v0xa8f3f0_0, 10, 2;
+    %delay 10, 0;
+    %load/v 8, v0xa8f2e0_0, 2;
+    %set/v v0xa8f050_0, 8, 2;
+    %load/v 8, v0xa8f3f0_0, 2;
+    %set/v v0xa8f130_0, 8, 2;
+    %load/v 8, v0xa8f4c0_0, 1;
+    %set/v v0xa8f210_0, 8, 1;
+    %fork TD_bitwise_tb.compare, S_0xa8ee80;
+    %join;
+    %set/v v0xa8f2e0_0, 1, 2;
+    %set/v v0xa8f3f0_0, 1, 2;
+    %delay 10, 0;
+    %load/v 8, v0xa8f2e0_0, 2;
+    %set/v v0xa8f050_0, 8, 2;
+    %load/v 8, v0xa8f3f0_0, 2;
+    %set/v v0xa8f130_0, 8, 2;
+    %load/v 8, v0xa8f4c0_0, 1;
+    %set/v v0xa8f210_0, 8, 1;
+    %fork TD_bitwise_tb.compare, S_0xa8ee80;
+    %join;
+    %movi 8, 1, 2;
+    %set/v v0xa8f2e0_0, 8, 2;
+    %movi 8, 1, 2;
+    %set/v v0xa8f3f0_0, 8, 2;
+    %delay 10, 0;
+    %load/v 8, v0xa8f2e0_0, 2;
+    %set/v v0xa8f050_0, 8, 2;
+    %load/v 8, v0xa8f3f0_0, 2;
+    %set/v v0xa8f130_0, 8, 2;
+    %load/v 8, v0xa8f4c0_0, 1;
+    %set/v v0xa8f210_0, 8, 1;
+    %fork TD_bitwise_tb.compare, S_0xa8ee80;
+    %join;
+    %vpi_call/w 2 67 "$finish" {0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";
