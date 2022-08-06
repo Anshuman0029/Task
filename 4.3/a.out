@@ -1,0 +1,157 @@
+#! /usr/share/iverilog-0.10.0/bin/vvp
+:ivl_version "0.10.0 (devel)" "(v0_9_6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_0xf9d9c0 .scope module, "threebittb" "threebittb" 2 92;
+ .timescale -9 -9;
+v0xfc9060_0 .var "a", 2 0;
+v0xfc9140_0 .var "b", 2 0;
+v0xfc9220_0 .net "cout", 0 0, L_0xfca270;  1 drivers
+v0xfc92f0_0 .net "sum", 2 0, L_0xfca330;  1 drivers
+L_0xfca330 .concat8 [ 1 1 1 0], L_0xfa92f0, L_0xfc96a0, L_0xfc9d70;
+L_0xfca3d0 .part v0xfc9060_0, 0, 1;
+L_0xfca500 .part v0xfc9060_0, 1, 1;
+L_0xfca5a0 .part v0xfc9060_0, 2, 1;
+L_0xfca640 .part v0xfc9140_0, 0, 1;
+L_0xfca770 .part v0xfc9140_0, 1, 1;
+L_0xfca850 .part v0xfc9140_0, 2, 1;
+S_0xf9d0a0 .scope module, "thrbit" "threebit" 2 97, 3 29 0, S_0xf9d9c0;
+ .timescale -9 -9;
+    .port_info 0 /OUTPUT 1 "sum0"
+    .port_info 1 /OUTPUT 1 "sum1"
+    .port_info 2 /OUTPUT 1 "sum2"
+    .port_info 3 /OUTPUT 1 "cout"
+    .port_info 4 /INPUT 1 "a0"
+    .port_info 5 /INPUT 1 "a1"
+    .port_info 6 /INPUT 1 "a2"
+    .port_info 7 /INPUT 1 "b0"
+    .port_info 8 /INPUT 1 "b1"
+    .port_info 9 /INPUT 1 "b2"
+v0xfc8590_0 .net "a0", 0 0, L_0xfca3d0;  1 drivers
+v0xfc8650_0 .net "a1", 0 0, L_0xfca500;  1 drivers
+v0xfc8720_0 .net "a2", 0 0, L_0xfca5a0;  1 drivers
+v0xfc8820_0 .net "b0", 0 0, L_0xfca640;  1 drivers
+v0xfc88f0_0 .net "b1", 0 0, L_0xfca770;  1 drivers
+v0xfc89e0_0 .net "b2", 0 0, L_0xfca850;  1 drivers
+v0xfc8ab0_0 .net "c1", 0 0, L_0xfc94e0;  1 drivers
+v0xfc8ba0_0 .net "c2", 0 0, L_0xfc9ba0;  1 drivers
+v0xfc8c90_0 .net "cout", 0 0, L_0xfca270;  alias, 1 drivers
+v0xfc8dc0_0 .net "sum0", 0 0, L_0xfa92f0;  1 drivers
+v0xfc8e60_0 .net "sum1", 0 0, L_0xfc96a0;  1 drivers
+v0xfc8f30_0 .net "sum2", 0 0, L_0xfc9d70;  1 drivers
+S_0xf9b450 .scope module, "f" "fulladder" 3 33, 3 21 0, S_0xf9d0a0;
+ .timescale -9 -9;
+    .port_info 0 /OUTPUT 1 "s"
+    .port_info 1 /OUTPUT 1 "cout"
+    .port_info 2 /INPUT 1 "a"
+    .port_info 3 /INPUT 1 "b"
+    .port_info 4 /INPUT 1 "cin"
+L_0xfc9570 .functor XOR 1, L_0xfca500, L_0xfca770, C4<0>, C4<0>;
+L_0xfc96a0 .functor XOR 1, L_0xfc9570, L_0xfc94e0, C4<0>, C4<0>;
+L_0xfc9860 .functor AND 1, L_0xfca500, L_0xfca770, C4<1>, C4<1>;
+L_0xfc98f0 .functor AND 1, L_0xfca500, L_0xfc94e0, C4<1>, C4<1>;
+L_0xfc99f0 .functor OR 1, L_0xfc9860, L_0xfc98f0, C4<0>, C4<0>;
+L_0xfc9a60 .functor AND 1, L_0xfca770, L_0xfc94e0, C4<1>, C4<1>;
+L_0xfc9ba0 .functor OR 1, L_0xfc99f0, L_0xfc9a60, C4<0>, C4<0>;
+v0xf9e180_0 .net *"_s0", 0 0, L_0xfc9570;  1 drivers
+v0xfc6c30_0 .net *"_s10", 0 0, L_0xfc9a60;  1 drivers
+v0xfc6cf0_0 .net *"_s4", 0 0, L_0xfc9860;  1 drivers
+v0xfc6dc0_0 .net *"_s6", 0 0, L_0xfc98f0;  1 drivers
+v0xfc6e80_0 .net *"_s8", 0 0, L_0xfc99f0;  1 drivers
+v0xfc6f90_0 .net "a", 0 0, L_0xfca500;  alias, 1 drivers
+v0xfc7050_0 .net "b", 0 0, L_0xfca770;  alias, 1 drivers
+v0xfc7110_0 .net "cin", 0 0, L_0xfc94e0;  alias, 1 drivers
+v0xfc71d0_0 .net "cout", 0 0, L_0xfc9ba0;  alias, 1 drivers
+v0xfc7320_0 .net "s", 0 0, L_0xfc96a0;  alias, 1 drivers
+S_0xfc7480 .scope module, "f1" "fulladder" 3 34, 3 21 0, S_0xf9d0a0;
+ .timescale -9 -9;
+    .port_info 0 /OUTPUT 1 "s"
+    .port_info 1 /OUTPUT 1 "cout"
+    .port_info 2 /INPUT 1 "a"
+    .port_info 3 /INPUT 1 "b"
+    .port_info 4 /INPUT 1 "cin"
+L_0xfc9c60 .functor XOR 1, L_0xfca5a0, L_0xfca850, C4<0>, C4<0>;
+L_0xfc9d70 .functor XOR 1, L_0xfc9c60, L_0xfc9ba0, C4<0>, C4<0>;
+L_0xfc9f30 .functor AND 1, L_0xfca5a0, L_0xfca850, C4<1>, C4<1>;
+L_0xfc9fc0 .functor AND 1, L_0xfca5a0, L_0xfc9ba0, C4<1>, C4<1>;
+L_0xfca0c0 .functor OR 1, L_0xfc9f30, L_0xfc9fc0, C4<0>, C4<0>;
+L_0xfca130 .functor AND 1, L_0xfca850, L_0xfc9ba0, C4<1>, C4<1>;
+L_0xfca270 .functor OR 1, L_0xfca0c0, L_0xfca130, C4<0>, C4<0>;
+v0xfc76a0_0 .net *"_s0", 0 0, L_0xfc9c60;  1 drivers
+v0xfc7780_0 .net *"_s10", 0 0, L_0xfca130;  1 drivers
+v0xfc7840_0 .net *"_s4", 0 0, L_0xfc9f30;  1 drivers
+v0xfc7910_0 .net *"_s6", 0 0, L_0xfc9fc0;  1 drivers
+v0xfc79d0_0 .net *"_s8", 0 0, L_0xfca0c0;  1 drivers
+v0xfc7ae0_0 .net "a", 0 0, L_0xfca5a0;  alias, 1 drivers
+v0xfc7ba0_0 .net "b", 0 0, L_0xfca850;  alias, 1 drivers
+v0xfc7c60_0 .net "cin", 0 0, L_0xfc9ba0;  alias, 1 drivers
+v0xfc7d00_0 .net "cout", 0 0, L_0xfca270;  alias, 1 drivers
+v0xfc7e30_0 .net "s", 0 0, L_0xfc9d70;  alias, 1 drivers
+S_0xfc7fc0 .scope module, "h" "half_adder" 3 32, 3 6 0, S_0xf9d0a0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "a"
+    .port_info 1 /INPUT 1 "b"
+    .port_info 2 /OUTPUT 1 "sum"
+    .port_info 3 /OUTPUT 1 "carry"
+L_0xfa92f0 .functor XOR 1, L_0xfca3d0, L_0xfca640, C4<0>, C4<0>;
+L_0xfc94e0 .functor AND 1, L_0xfca3d0, L_0xfca640, C4<1>, C4<1>;
+v0xfc81e0_0 .net "a", 0 0, L_0xfca3d0;  alias, 1 drivers
+v0xfc82a0_0 .net "b", 0 0, L_0xfca640;  alias, 1 drivers
+v0xfc8360_0 .net "carry", 0 0, L_0xfc94e0;  alias, 1 drivers
+v0xfc8460_0 .net "sum", 0 0, L_0xfa92f0;  alias, 1 drivers
+    .scope S_0xf9d9c0;
+T_0 ;
+    %set/v v0xfc9060_0, 0, 3;
+    %end;
+    .thread T_0;
+    .scope S_0xf9d9c0;
+T_1 ;
+    %set/v v0xfc9140_0, 0, 3;
+    %end;
+    .thread T_1;
+    .scope S_0xf9d9c0;
+T_2 ;
+    %vpi_call/w 2 99 "$dumpfile", "dump.vcd" {0 0};
+    %vpi_call/w 2 100 "$dumpvars", 2'sb01, S_0xf9d9c0 {0 0};
+    %set/v v0xfc9060_0, 0, 3;
+T_2.0 ;
+    %load/v 8, v0xfc9060_0, 3;
+    %pad 11, 0, 1;
+    %cmpi/u 8, 2, 4;
+    %or 5, 4, 1;
+    %jmp/0xz T_2.1, 5;
+    %set/v v0xfc9140_0, 0, 3;
+T_2.2 ;
+    %load/v 8, v0xfc9140_0, 3;
+    %pad 11, 0, 1;
+    %cmpi/u 8, 2, 4;
+    %or 5, 4, 1;
+    %jmp/0xz T_2.3, 5;
+    %delay 10, 0;
+    %vpi_call/w 2 111 "$display", "a = %d, b = %d, sum = %d, cout = %d", v0xfc9060_0, v0xfc9140_0, v0xfc92f0_0, v0xfc9220_0 {0 0};
+    %load/v 8, v0xfc9140_0, 3;
+    %movi 11, 1, 3;
+    %add 11, 8, 3;
+    %set/v v0xfc9140_0, 11, 3;
+    %jmp T_2.2;
+T_2.3 ;
+    %load/v 8, v0xfc9060_0, 3;
+    %movi 11, 1, 3;
+    %add 11, 8, 3;
+    %set/v v0xfc9060_0, 11, 3;
+    %jmp T_2.0;
+T_2.1 ;
+    %vpi_call/w 2 129 "$finish" {0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";
