@@ -1,0 +1,11 @@
+// Code your design here
+`timescale 1ns / 1ns
+module bitwise(x,y,z,o);
+    input [2:0] x,y;
+    output [2:0] z;
+    output o;
+  
+    assign z = x & y;
+    assign o = |z;   
+  
+endmodule
